@@ -9,8 +9,6 @@ class PostController extends Controller
 {
     public function create()
     {
-        $channels = Channel::all();
-
-        return view('post.create', compact('channels'));
+        return view('post.create');
     }
 }
