@@ -19,3 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('pay', [Controllers\PayOrderController::class, 'store']);
+
+// view composers
+Route::get('channels', [Controllers\ChannelController::class, 'index']);
+Route::get('post/create', [Controllers\PostController::class, 'create']);
