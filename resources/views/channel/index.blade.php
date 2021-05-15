@@ -10,9 +10,7 @@
     <h1>Channel List</h1>
 
     <ul>
-        @foreach ($channels as $channel)
-            <li>{{$channel->name}}</li>
-        @endforeach
+        @include('partials.channels.list')
     </ul>
 </body>
 </html>
