@@ -3,13 +3,16 @@
 namespace App\Providers;
 
 use App\Models\Channel;
+use Illuminate\Support\Str;
+use App\PostcardSendingService;
 use App\Billing\BankPaymentGateway;
 use Illuminate\Support\Facades\View;
 use App\Billing\CreditPaymentGateway;
 use App\Billing\PaymentGatewayContract;
-use App\Http\View\Composers\ChannelsComposer;
-use App\PostcardSendingService;
 use Illuminate\Support\ServiceProvider;
+use App\Http\View\Composers\ChannelsComposer;
+use App\Mixins\StrMixins;
+use Illuminate\Routing\ResponseFactory;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -49,6 +52,20 @@ class AppServiceProvider extends ServiceProvider
         // Facades
         $this->app->singleton('Postcard', function ($app) {
             return new PostcardSendingService('us', 4, 6);
+        });
+
+        // Macros
+        Str::macro('partNumber', function ($part) {
+            return 'AABC-' . substr($part, 0, 3) . '-' . substr($part, 3);
+        });
+
+        Str::mixin(new StrMixins());
+
+        ResponseFactory::macro('errorJson', function ($message = 'Default error message.') {
+            return [
+                'message' => $message,
+                'error_code' => 1234
+            ];
         });
     }
 }

@@ -1,10 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Postcard;
 
 use App\Http\Controllers;
+use Illuminate\Support\Str;
 use App\PostcardSendingService;
-use App\Postcard;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +38,13 @@ Route::get('postcards', function () {
 
 Route::get('facades', function () {
     Postcard::hello('hello form facades', 'abc@gmail.test');
+});
+
+// macros
+
+Route::get('macros', function () {
+    // dd(Str::partNumber('239847522'));
+    dd(Str::prefix('239847522'));
+
+    return Response::errorJson('custom message 404');
 });
