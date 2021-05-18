@@ -3,11 +3,11 @@
 namespace App\QueryFilters;
 
 
-class Sort extends Filter
+class MaxCount extends Filter
 {
 
     protected function applyFilter($builder)
     {
-        return $builder->orderBy('title', request($this->filterName()));
+        return  $builder->take(request($this->filterName()));
     }
 }

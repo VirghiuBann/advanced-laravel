@@ -5,3 +5,4 @@
 ## 3. Polymorphic
 ## 4. Facades
 ## 4. Macros
+## 4. Pipelines
