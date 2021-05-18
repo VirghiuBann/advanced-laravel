@@ -48,3 +48,7 @@ Route::get('macros', function () {
 
     return Response::errorJson('custom message 404');
 });
+
+// pipeline
+
+Route::get('pipeline', [Controllers\PostController::class, 'index']);
