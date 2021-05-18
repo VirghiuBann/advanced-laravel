@@ -19,17 +19,12 @@ class PostController extends Controller
         //     $posts->orderBy('title', request('sort'));
         // }
 
+        // if (request()->has('max_count')) {
+        //     $posts->take(request('max_count'));
+        // }
+
         // $posts = $posts->get();
 
-        // $posts = app(Pipeline::class)
-        //     ->send(Post::query())
-        //     ->through([
-        //         \App\QueryFilters\Active::class,
-        //         \App\QueryFilters\Sort::class,
-        //         \App\QueryFilters\MaxCount::class,
-        //     ])
-        //     ->thenReturn()
-        //     ->get();
 
         $posts = Post::allPosts()
             ->get();
